@@ -1,0 +1,14 @@
+#Webhook container
+version: "3"
+services:
+  webhook:
+    image: 192.168.50.5:5000/webhook:0.0.1
+    container_name: webhook
+    command: -verbose -hooks=/home/config/hooks.json -hotreload
+    environment:
+      - TZ=Europe/Brussels #optional
+    volumes:
+      - ~/webhook/:/home
+    ports:
+      - 9000:9000
+    restart: always
