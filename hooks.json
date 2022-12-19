@@ -41,7 +41,7 @@
     "and": [{
         "match": {
           "type": "payload-hmac-sha1",
-          "secret": "WASPGitWebhookSecret",
+          "secret": "WASPGitWebhookSecretBack",
           "parameter": {
             "source": "header",
             "name": "X-Hub-Signature"
