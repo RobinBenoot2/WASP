@@ -1,52 +1,63 @@
-[
-  {
-    "id": "wasp",
-    "execute-command": "/home/scripts/hello_world.sh",
-    "command-working-directory": "/home/scripts",
-    "pass-arguments-to-command":
-    [
-      {
-        "source": "payload",
-        "name": "head_commit.id"
-      },
-      {
-        "source": "payload",
-        "name": "pusher.name"
-      },
-      {
-        "source": "payload",
-        "name": "pusher.email"
-      }
-    ],
-    "trigger-rule":
-    {
-      "and":
-      [
-        {
-          "match":
-          {
-            "type": "payload-hmac-sha1",
-            "secret": "WASPGitWebhookSecret",
-            "parameter":
-            {
-              "source": "header",
-              "name": "X-Hub-Signature"
-            }
-          }
-        },
-        {
-          "match":
-          {
-            "type": "value",
-            "value": "refs/heads/main",
-            "parameter":
-            {
-              "source": "payload",
-              "name": "ref"
-            }
+[{
+  "id": "wasp-frontend",
+  "execute-command": "/home/scripts/wasp-frontend.sh",
+  "command-working-directory": "/home/repo/wasp-frontend",
+  "pass-arguments-to-command": [{
+    "source": "payload",
+    "name": "ref"
+  }],
+  "trigger-rule": {
+    "and": [{
+        "match": {
+          "type": "payload-hmac-sha1",
+          "secret": "WASPGitWebhookSecret",
+          "parameter": {
+            "source": "header",
+            "name": "X-Hub-Signature"
           }
         }
-      ]
-    }
+      },
+      {
+        "match": {
+          "type": "value",
+          "value": "refs/heads/main",
+          "parameter": {
+            "source": "payload",
+            "name": "ref"
+          }
+        }
+      }
+    ]
   }
-]
+},{
+  "id": "wasp-backend",
+  "execute-command": "/home/scripts/wasp-backend.sh",
+  "command-working-directory": "/home/repo/wasp-backend",
+  "pass-arguments-to-command": [{
+    "source": "payload",
+    "name": "ref"
+  }],
+  "trigger-rule": {
+    "and": [{
+        "match": {
+          "type": "payload-hmac-sha1",
+          "secret": "WASPGitWebhookSecret",
+          "parameter": {
+            "source": "header",
+            "name": "X-Hub-Signature"
+          }
+        }
+      },
+      {
+        "match": {
+          "type": "value",
+          "value": "refs/heads/main",
+          "parameter": {
+            "source": "payload",
+            "name": "ref"
+          }
+        }
+      }
+    ]
+  }
+}]
