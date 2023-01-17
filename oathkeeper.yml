@@ -1,0 +1,25 @@
+access_rules:
+  repositories:
+    - file:///etc/config/oathkeeper/rules/surreal.json
+
+authenticators:
+  noop:
+    enabled: true
+
+authorizers:
+  allow:
+    enabled: true
+
+mutators:
+  noop:
+    enabled: true
+
+serve:
+  proxy:
+    tls:
+      cert:
+        path: /etc/config/oathkeeper/id_rsa.pub.pem
+      key:
+        path: /etc/config/oathkeeper/id_rsa.pem
+  api:
+    port: 4456
