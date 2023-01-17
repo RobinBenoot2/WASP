@@ -1,6 +1,6 @@
 access_rules:
   repositories:
-    - file:///etc/config/oathkeeper/rules/surreal.json
+    - file:///etc/config/oathkeeper/rules/wasp.json
 
 authenticators:
   noop:
@@ -18,8 +18,8 @@ serve:
   proxy:
     tls:
       cert:
-        path: /etc/config/oathkeeper/id_rsa.pub.pem
+        path: /etc/config/oathkeeper/ssh/id_rsa.pub.pem
       key:
-        path: /etc/config/oathkeeper/id_rsa.pem
+        path: /etc/config/oathkeeper/ssh/id_rsa.pem
   api:
     port: 4456
