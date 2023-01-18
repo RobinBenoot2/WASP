@@ -18,8 +18,8 @@ serve:
   proxy:
     tls:
       cert:
-        path: /etc/config/oathkeeper/ssh/id_rsa.pub.pem
+        path: /etc/config/oathkeeper/ssl/cert.pem
       key:
-        path: /etc/config/oathkeeper/ssh/id_rsa.pem
+        path: /etc/config/oathkeeper/ssl/key.pem
   api:
     port: 4456
