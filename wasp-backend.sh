@@ -1,11 +1,7 @@
 #!/bin/sh
 echo "Starting git clone from repository!"
 rm -r 2223-webservices-RobinBenoot2
-# requires a script file in the github folder called authentication.sh
-# with the following content:
-# export GITHUB_USER="yourusername"
-# export GitHub_TOKEN="yourtoken"
-bash /mnt/user/WASP/github/authentication.sh
+sh  /home/scripts/authentication.sh
 git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/Web-IV/2223-webservices-RobinBenoot2.git
 cd 2223-webservices-RobinBenoot2
 echo "Building the image!"
