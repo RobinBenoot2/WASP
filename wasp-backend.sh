@@ -1,8 +1,15 @@
 #!/bin/sh
 echo "Starting git clone from repository!"
-rm -r 2223-webservices-RobinBenoot2
 sh  /home/scripts/authentication.sh
-git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/Web-IV/2223-webservices-RobinBenoot2.git
+if [ -d "/home/scripts/2223-webservices-RobinBenoot2" ]; then
+  echo "Directory exists."
+  cd 2223-webservices-RobinBenoot2
+  git pull
+  cd ..
+else
+  echo "Directory does not exist."
+  git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/Web-IV/2223-webservices-RobinBenoot2.git
+fi
 cd 2223-webservices-RobinBenoot2
 echo "Building the image!"
 docker build . --file Dockerfile --tag 192.168.50.5:5000/wasp-backend:latest
